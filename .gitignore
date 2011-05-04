@@ -1,4 +1,5 @@
 settings_local.py
+fd_login_data.py
 .coverage
 .figleaf
 *.pyc

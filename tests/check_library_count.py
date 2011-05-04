@@ -6,14 +6,13 @@ from selenium.webdriver.common.exceptions import NoSuchElementException
 import home_page, login_page, dashboard_page, lib_editor_page, addon_editor_page, fd_login_data
 
 #My Account Page
+#This test should be run only after you run the create library test.First create an library. Then go to dashoard and compare that the label is 'initial'. then create a copy of that library and compare that the label is 'copy'
 class check_lib_label(unittest.TestCase):
 
     def setUp(self):
         self.driver = webdriver.connect('firefox')
 
-    def testAddonCount(self):
-        #This test is to assert that the count of the addons on dashboard is equal to the number of addons present on the page.
-        #Create page objects
+    def testLibCount(self):
         sel = self.driver
         homepage_obj = home_page.HomePage(sel)
         loginpage_obj = login_page.LoginPage(sel)
@@ -30,15 +29,15 @@ class check_lib_label(unittest.TestCase):
         
         #Get the total count of the number of add-ons that are displayed on the dashboard.
         #homepage_obj.click_myaccount()
-        addon_count = dashboardpage_obj.calc_total_addons()
+        lib_count = dashboardpage_obj.calc_total_libs()
 
-        #Get the number of addons that are displayed on the left hand side of the page.(Something like your add-ons(20))
-        counter = dashboardpage_obj.get_addons_count()
+        #Get the number of libraries that are displayed on the left hand side of the page.(Something like your Libraries(20))
+        counter = dashboardpage_obj.get_libs_count()
         counter = string.lstrip(counter, '(')
         counter = string.rstrip(counter, ')')
     
-        #Assert that the total addons on the page matches the counter on the left hand side.
-        self.assertEquals(str(addon_count), str(counter))
+        #Assert that the total libraries on the page matches the counter on the left hand side.
+        self.assertEquals(str(lib_count), str(counter))
 
     def tearDown(self):
         self.driver.quit()

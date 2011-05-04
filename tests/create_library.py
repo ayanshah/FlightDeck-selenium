@@ -1,7 +1,7 @@
 import unittest, time, re
 from selenium import webdriver
 from selenium.webdriver.common.exceptions import NoSuchElementException
-import home_page, login_page, dashboard_page, lib_editor_page
+import home_page, login_page, dashboard_page, lib_editor_page, fd_login_data
 
 class create_library(unittest.TestCase):
 
@@ -15,8 +15,10 @@ class create_library(unittest.TestCase):
         homepage_obj = home_page.HomePage(sel)
         loginpage_obj = login_page.LoginPage(sel)
         libpage_obj = lib_editor_page.LibraryEditorPage(sel)
-        username = "amo.test.acc@gmail.com"
-        password = "qwertyasdf"
+
+        user_info = fd_login_data.FDLoginData().getLoginInfo()
+        username = user_info['username']
+        password = user_info['password']
         
         #Click on creatae library button on homepage, login and check that the library name for the current library starts with "My Library"
         homepage_obj.go_to_home_page()

@@ -9,10 +9,12 @@ class DashboardPage(Page):
     _home_page_click = 'flightdeck-logo'
     _top_public_addon_name = "//section[@id='app-content']/ul/li[1]/h3"
     _top_public_lib_name = "//section[@id='app-content']/ul[2]/li[1]/h3"
-    _private_addons_link = "//aside[@id='app-sidebar']/ul[3]/li[1]/a"
+    _public_addons_link = "//aside[@id='app-sidebar']/ul[2]/li[1]/a"
+    _public_libs_link = "//aside[@id='app-sidebar']/ul[2]/li[2]/a"
     _private_libs_link = "//aside[@id='app-sidebar']/ul[3]/li[2]/a"
-    _addon_label_name = "//section[@id='app-content']/ul[1]/li[1]/h4"
-    _lib_label_name = "//section[@id='app-content']/ul[2]/li[1]/h4"
+    _private_addons_link = "//aside[@id='app-sidebar']/ul[3]/li[1]/a"
+    _addon_label_name = "//section[@id='app-content']/ul[1]/li[1]/h3/span/span"
+    _lib_label_name = "//section[@id='app-content']/ul[2]/li[1]/h3/span/span"
     _addon_test_btn = "//section[@id='app-content']/ul[1]/li[1]/ul/li[1]/a"
     _addon_delete_btn = "//section[@id='app-content']/ul[1]/li[1]/ul[1]/li[3]/a"
     _addon_edit_btn = "//section[@id='app-content']/ul[1]/li[1]/ul/li[2]/a"
@@ -76,6 +78,14 @@ class DashboardPage(Page):
         elements = self.sel.find_elements_by_xpath(self._libs_list)
         return len(elements)
     
+    def go_to_public_addons_page(self):
+        self.sel.find_element_by_xpath(self._public_addons_link).click()
+        self.sel.implicitly_wait(10)
+    
+    def go_to_public_libs_page(self):
+        self.sel.find_element_by_xpath(self._public_libs_link).click()
+        self.sel.implicitly_wait(10)
+    
     def go_to_private_addons_page(self):
         self.sel.find_element_by_xpath(self._private_addons_link).click()
         self.sel.implicitly_wait(10)
@@ -85,11 +95,11 @@ class DashboardPage(Page):
         self.sel.implicitly_wait(10)
     
     def navigate_to_addon_editor(self):
-        self.sel.find_element_by_xpath(self._addon_source_btn).click()
+        self.sel.find_element_by_xpath(self._addon_edit_btn).click()
         self.sel.implicitly_wait(10)
     
     def navigate_to_lib_editor(self):
-        self.sel.find_element_by_xpath(self._lib_source_btn).click()
+        self.sel.find_element_by_xpath(self._lib_edit_btn).click()
         self.sel.implicitly_wait(10)
         
     def check_addon_test_btn_present(self):
@@ -155,15 +165,15 @@ class DashboardPage(Page):
         except NoSuchElementException:
             return False
     
-    #def click_addon_mkprivate_btn(self):
-    #    self.sel.find_element_by_xpath(self._addon_disable_btn).click()
-    #    self.sel.implicitly_wait(10)
-    #    return
-    #
-    #def click_lib_mkprivate_btn(self):
-    #    self.sel.find_element_by_xpath(self._lib_disable_btn).click()
-    #    self.sel.implicitly_wait(10)
-    #    return
+    def click_addon_mkprivate_btn(self):
+        self.sel.find_element_by_xpath(self._addon_private_btn).click()
+        self.sel.implicitly_wait(10)
+        return
+    
+    def click_lib_mkprivate_btn(self):
+        self.sel.find_element_by_xpath(self._lib_private_btn).click()
+        self.sel.implicitly_wait(10)
+        return
 
     def click_addon_delete(self):
         self.sel.find_element_by_xpath(self._addon_delete_btn).click()

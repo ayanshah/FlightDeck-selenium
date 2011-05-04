@@ -3,7 +3,7 @@
 import unittest, time, re
 from selenium import webdriver
 from selenium.webdriver.common.exceptions import NoSuchElementException
-import home_page, login_page, dashboard_page, lib_editor_page, addon_editor_page, dashboard_private_page
+import home_page, login_page, dashboard_page, lib_editor_page, addon_editor_page, dashboard_private_page, fd_login_data
 
 #My Account Page
 
@@ -18,8 +18,10 @@ class check_addon_activate_deactivate(unittest.TestCase):
         loginpage_obj = login_page.LoginPage(sel)
         dashboardpage_obj = dashboard_page.DashboardPage(sel)
         privatepage_obj = dashboard_private_page.DashboardPrivatePage(sel)
-        username = "amo.test.acc@gmail.com"
-        password = "qwertyasdf"
+
+        user_info = fd_login_data.FDLoginData().getLoginInfo()
+        username = user_info['username']
+        password = user_info['password']
     
         homepage_obj.go_to_home_page()
         homepage_obj.click_signin()
@@ -55,8 +57,10 @@ class check_addon_activate_deactivate(unittest.TestCase):
         loginpage_obj = login_page.LoginPage(sel)
         dashboardpage_obj = dashboard_page.DashboardPage(sel)
         privatepage_obj = dashboard_private_page.DashboardPrivatePage(sel)
-        username = "amo.test.acc@gmail.com"
-        password = "qwertyasdf"
+
+        user_info = fd_login_data.FDLoginData().getLoginInfo()
+        username = user_info['username']
+        password = user_info['password']
         
         homepage_obj.go_to_home_page()
         homepage_obj.click_signin()

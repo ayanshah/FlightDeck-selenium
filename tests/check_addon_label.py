@@ -3,7 +3,7 @@
 import unittest, time, re
 from selenium import webdriver
 from selenium.webdriver.common.exceptions import NoSuchElementException
-import home_page, login_page, dashboard_page, lib_editor_page, addon_editor_page
+import home_page, login_page, dashboard_page, lib_editor_page, addon_editor_page, fd_login_data
 
 #My Account Page
 class check_addon_label(unittest.TestCase):
@@ -19,15 +19,16 @@ class check_addon_label(unittest.TestCase):
         loginpage_obj = login_page.LoginPage(sel)
         dashboardpage_obj = dashboard_page.DashboardPage(sel)
         addonpage_obj = addon_editor_page.AddonEditorPage(sel)
-        username = "amo.test.acc@gmail.com"
-        password = "qwertyasdf"
+
+        user_info = fd_login_data.FDLoginData().getLoginInfo()
+        username = user_info['username']
+        password = user_info['password']
         
         #Create an addon. Then go to dashoard and assert that the label is 'initial'. 
         homepage_obj.go_to_home_page()
         homepage_obj.click_create_addon_btn()
         loginpage_obj.login(username, password)
         addon_name = addonpage_obj.get_addon_name()
-        text_addon = addon_name.text
         homepage_obj.click_myaccount()
         self.assertEqual("Dashboard - Add-on Builder", dashboardpage_obj.get_page_title())
         label_name = dashboardpage_obj.get_addon_label_name()
@@ -37,9 +38,8 @@ class check_addon_label(unittest.TestCase):
         dashboardpage_obj.navigate_to_addon_editor()
         addonpage_obj.click_copy_btn()
         copy_addon_name = addonpage_obj.get_addon_name()
-        text_copy_addon = copy_addon_name.text
         try:
-            self.assertNotEqual(text_addon, text_copy_addon)
+            self.assertNotEqual(addon_name, copy_addon_name)
         except:
             print 'A copy of the addon could not be created'
         homepage_obj.click_myaccount()

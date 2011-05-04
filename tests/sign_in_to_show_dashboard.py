@@ -1,7 +1,7 @@
 import unittest, time, re
 from selenium import webdriver
 from selenium.webdriver.common.exceptions import NoSuchElementException
-import home_page, login_page, dashboard_page
+import home_page, login_page, dashboard_page, fd_login_data
 
 class sign_in_to_show_dashboard(unittest.TestCase):
 
@@ -15,14 +15,16 @@ class sign_in_to_show_dashboard(unittest.TestCase):
         homepage_obj = home_page.HomePage(sel)
         loginpage_obj = login_page.LoginPage(sel)
         dashboardpage_obj = dashboard_page.DashboardPage(sel)
-        username = "amo.test.acc@gmail.com"
-        password = "qwertyasdf"
+
+        user_info = fd_login_data.FDLoginData().getLoginInfo()
+        username = user_info['username']
+        password = user_info['password']
         
         #Click on sign-in link on homepage and enter the username and password
         homepage_obj.go_to_home_page()
         homepage_obj.click_signin()
         loginpage_obj.login(username, password)
-        
+
         #Check for the title of the page to confirm that we are on the dashboard page.
         self.assertEqual("Dashboard - Add-on Builder", dashboardpage_obj.get_page_title())
         
@@ -30,7 +32,7 @@ class sign_in_to_show_dashboard(unittest.TestCase):
         dashboardpage_obj.navigate_to_homepage()
         homepage_obj.click_myaccount()
         self.assertEqual("Dashboard - Add-on Builder", dashboardpage_obj.get_page_title())
-    
+
     def tearDown(self):
         self.driver.quit()
 

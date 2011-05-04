@@ -7,8 +7,8 @@ class DashboardPrivatePage(Page):
 
     _top_private_addon_name = "//section[@id='app-content']/ul/li[1]/h3"
     _top_private_lib_name = "//section[@id='app-content']/ul/li[1]/h3"
-    _addon_mkpublic_btn = "//section[@id='app-content']/ul/li[1]/ul/li[3]/a"
-    _lib_mkpublic_btn = "//section[@id='app-content']/ul/li[1]/ul/li[2]/a"""
+    _addon_mkpublic_btn = "//section[@id='app-content']/ul/li[1]/ul[2]/li[1]/a"
+    _lib_mkpublic_btn = "//section[@id='app-content']/ul/li[1]/ul[2]/li[1]/a"
     _my_account_link = "//header[@id='app-header']/div[2]/nav/ul/li[3]/span/a[1]"
 
     def __init__(self, selenium):

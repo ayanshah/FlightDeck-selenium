@@ -2,11 +2,12 @@ import unittest, time, re
 from selenium.webdriver.common.exceptions import NoSuchElementException
 import home_page, login_page, dashboard_page, fd_login_data
 from selenium import webdriver
+from vars import ConnectionParameters
 
 class check_disable_button_present_after_signin(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.connect('firefox')
+        self.driver = webdriver.connect(ConnectionParameters.browser)
     
     def testShouldCheckDisableButtonPresentAfterSignin(self):
         #This test case should be run only after create addon and create library test case

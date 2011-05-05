@@ -2,16 +2,16 @@
 # -*- coding: utf-8 -*-
 
 #Author = Ayan Shah
-# We need to run the add-on create test before this test case is run
 
 import unittest, time, re
 from selenium import webdriver
 from selenium.webdriver.common.exceptions import NoSuchElementException
 import home_page, login_page, addon_editor_page, fd_login_data
+from vars import ConnectionParameters
 
 class check_buttons_on_addon_editor(unittest.TestCase):
     def setUp(self):
-        self.driver = webdriver.connect('firefox')
+        self.driver = webdriver.connect(ConnectionParameters.browser)
 
     def testShouldCheckButtonsForAddonsInEditAndViewMode(self):
         #This test is to check that we should be able to see specific buttons in the edit mode of an addon.

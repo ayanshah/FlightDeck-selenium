@@ -2,11 +2,12 @@ import unittest, time, re
 from selenium import webdriver
 from selenium.webdriver.common.exceptions import NoSuchElementException
 import home_page, login_page, dashboard_page, lib_editor_page, fd_login_data
+from vars import ConnectionParameters
 
 class create_library(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.connect('firefox')
+        self.driver = webdriver.connect(ConnectionParameters.browser)
     
     def testShouldCreateLibrary(self):
         #This test is to check that we should be able to create a library.

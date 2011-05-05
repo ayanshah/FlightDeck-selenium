@@ -4,12 +4,13 @@ import unittest, time, re, string
 from selenium import webdriver
 from selenium.webdriver.common.exceptions import NoSuchElementException
 import home_page, login_page, dashboard_page, lib_editor_page, addon_editor_page, fd_login_data
+from vars import ConnectionParameters
 
 #My Account Page
 class check_lib_label(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.connect('firefox')
+        self.driver = webdriver.connect(ConnectionParameters.browser)
 
     def testAddonCount(self):
         #This test is to assert that the count of the addons on dashboard is equal to the number of addons present on the page.

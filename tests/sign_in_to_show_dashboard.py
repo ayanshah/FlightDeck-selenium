@@ -2,11 +2,12 @@ import unittest, time, re
 from selenium import webdriver
 from selenium.webdriver.common.exceptions import NoSuchElementException
 import home_page, login_page, dashboard_page, fd_login_data
+from vars import ConnectionParameters
 
 class sign_in_to_show_dashboard(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.connect('firefox')
+        self.driver = webdriver.connect(ConnectionParameters.browser)
     
     def testShouldSignInToShowDashboard(self):
         #This test is to check that the user should be directed to the dashboard page after signing in.

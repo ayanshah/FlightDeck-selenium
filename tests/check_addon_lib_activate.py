@@ -4,13 +4,14 @@ import unittest, time, re
 from selenium import webdriver
 from selenium.webdriver.common.exceptions import NoSuchElementException
 import home_page, login_page, dashboard_page, lib_editor_page, addon_editor_page, dashboard_private_page, fd_login_data
+from vars import ConnectionParameters
 
 #My Account Page
 
 class check_addon_activate_deactivate(unittest.TestCase):
     
     def setUp(self):
-        self.driver = webdriver.connect('firefox')
+        self.driver = webdriver.connect(ConnectionParameters.browser)
 
     def testShouldCheckAddonDeactivateAndActivate(self):
         sel = self.driver

@@ -4,11 +4,12 @@ import unittest, time, re
 from selenium import webdriver
 from selenium.webdriver.common.exceptions import NoSuchElementException
 import home_page, login_page, dashboard_page, lib_editor_page, addon_editor_page, dashboard_public_page, fd_login_data
+from vars import ConnectionParameters
 
 class check_addon_pagination(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.connect('firefox')
+        self.driver = webdriver.connect(ConnectionParameters.browser)
     
     def testAddonPagination(self):
         #This test is to assert that if the count of the addons on dashboard is more than 10, then the addons should be paginated on public addons page.

@@ -4,13 +4,14 @@ import unittest, time, re, string
 from selenium import webdriver
 from selenium.webdriver.common.exceptions import NoSuchElementException
 import home_page, login_page, dashboard_page, lib_editor_page, addon_editor_page, fd_login_data
+from vars import ConnectionParameters
 
 #My Account Page
 #This test should be run only after you run the create library test.First create an library. Then go to dashoard and compare that the label is 'initial'. then create a copy of that library and compare that the label is 'copy'
 class check_lib_label(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.connect('firefox')
+        self.driver = webdriver.connect(ConnectionParameters.browser)
 
     def testLibCount(self):
         sel = self.driver

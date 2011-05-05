@@ -3,6 +3,7 @@ from selenium import webdriver
 from page import Page
 import unittest, time, re, fd_login_data
 from selenium.webdriver.common.exceptions import NoSuchElementException
+from vars import ConnectionParameters
 
 class HomePage(Page):
 
@@ -25,7 +26,7 @@ class HomePage(Page):
         return self.sel.title
 
     def go_to_home_page(self):
-        self.sel.get(fd_login_data.FDLoginData().get_home_page())
+        self.sel.get(ConnectionParameters.baseurl)
         self.sel.implicitly_wait(10)
 
     def click_signin(self):
